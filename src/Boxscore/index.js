@@ -39,6 +39,12 @@ const scoreSection = (team) => (
     <Box className="boxscore-box-styling" color={team.color}>{team.abbreviation}</Box>
     {team.scoring.map((score, index) => <Box key={index} className="score">{score}</Box>)}
     <Box className="score" borderLeft="1px solid #c2c2c2">{team.score}</Box>
+    {team.hits && team.errors && (
+      <>
+        <Box className="score" borderLeft="1px solid #c2c2c2">{team.hits}</Box>
+        <Box className="score" borderLeft="1px solid #c2c2c2">{team.errors}</Box>
+      </>
+    )}
   </Grid>
 );
 
@@ -91,7 +97,15 @@ const Boxscore = ({
       >
         <Box className="boxscore-box-styling" />
         {displayGamePeriods}
-        <Box className="boxscore-box-styling" fontSize="14px">{game.eventInfo.status === 'Final' && 'F'}</Box>
+        {game.league.toLowerCase() === 'mlb' ? (
+          <>
+            <Box className="boxscore-box-styling" fontSize="14px">R</Box>
+            <Box className="boxscore-box-styling" fontSize="14px">H</Box>
+            <Box className="boxscore-box-styling" fontSize="14px">E</Box>
+          </>
+        ) : (
+          <Box className="boxscore-box-styling" fontSize="14px">{game.eventInfo.status === 'Final' && 'F'}</Box>
+        )}
       </Grid>
       {scoreSection(game.awayTeam)}
       {scoreSection(game.homeTeam)}

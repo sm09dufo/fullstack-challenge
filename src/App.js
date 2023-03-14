@@ -5,11 +5,11 @@ import ScorePreview from './ScorePreview';
 import './App.css';
 
 const App = () => {
-  const [selectedGameId, setSelectedGameId] = useState();
+  const [selectedGameId, setSelectedGameId] = useState('6c974274-4bfc-4af8-a9c4-8b926637ba74');
 
   return (
     <div className="App">
-      <div className="App-header" href="styles.css">
+      <div className="App-container" href="styles.css">
         <Grid display="flex" flexDirection="row">
           <Grid
             display="flex"
