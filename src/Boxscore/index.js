@@ -37,12 +37,17 @@ const getOvertimeLabel = (league, otPeriod) => {
 const scoreSection = (team) => (
   <Grid className="boxscore-grid-styling">
     <Box className="boxscore-box-styling" color={team.color}>{team.abbreviation}</Box>
-    {team.scoring.map((score, index) => <Box key={index} className="score">{score}</Box>)}
-    <Box className="score" borderLeft="1px solid #c2c2c2">{team.score}</Box>
-    {team.hits && team.errors && (
+    {/* If no scoring yet (pre-game), show nothing */}
+    {team.scoring.length > 0 && (
       <>
-        <Box className="score" borderLeft="1px solid #c2c2c2">{team.hits}</Box>
-        <Box className="score" borderLeft="1px solid #c2c2c2">{team.errors}</Box>
+        {team.scoring.map((score, index) => <Box key={index} className="score">{score}</Box>)}
+        <Box className="score" borderLeft="1px solid #c2c2c2">{team.score}</Box>
+        {team.hits && team.errors && (
+          <>
+            <Box className="score" borderLeft="1px solid #c2c2c2">{team.hits}</Box>
+            <Box className="score" borderLeft="1px solid #c2c2c2">{team.errors}</Box>
+          </>
+        )}
       </>
     )}
   </Grid>
